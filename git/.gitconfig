@@ -1,0 +1,35 @@
+[user]
+	name = Eric Otuvaka
+	email = eric.otuvaka@gmail.com
+[ui "color"]
+	ui = always
+[color]
+	ui = true
+[core]
+	autocrlf = input
+	safecrlf = true
+	pager = delta
+[diff]
+	algorithm = histogram
+	indentHeuristic = true
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	# Optional: style config (customize as you want)
+	syntax-theme = "gruvbox-dark"
+	line-numbers = true
+	side-by-side = true
+	light = false
+[init]
+	defaultBranch = main
+[pull]
+	rebase = false
+[push]
+	default = current
+	autoSetupRemote = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/run/current-system/sw/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/run/current-system/sw/bin/gh auth git-credential
