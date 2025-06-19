@@ -1,17 +1,16 @@
 #!/usr/bin/env bash
 
-set -euo pipefail
-
 # Customize these
 DOTFILES_REPO="$HOME/Dotfiles"
-REPO_URL="https://github.com/esotuvaka/dotfiles.git"  
-STOW_PKGS=(alacritty fish nvim starship tmux git)    # Folder names inside your dotfiles
+REPO_URL="https://github.com/esotuvaka/dotfiles.git"
+STOW_PKGS="alacritty fish nvim starship tmux git"    # Folder names inside your dotfiles
 
-function header() {
-    echo -e "\n\033[1;32m==> $1\033[0m"
+header() {
+    echo ""
+    echo -e "\033[1;32m==> $1\033[0m"
 }
 
-function check_and_install() {
+check_and_install() {
     local pkg=$1
     if ! command -v "$pkg" &> /dev/null; then
         header "Installing $pkg..."
@@ -41,10 +40,10 @@ else
     echo "Dotfiles already cloned at $DOTFILES_REPO"
 fi
 
-cd "$DOTFILES_REPO"
+cd "$DOTFILES_REPO" || exit
 
 header "Symlinking dotfiles with stow..."
-for pkg in "${STOW_PKGS[@]}"; do
+for pkg in $STOW_PKGS; do
     stow "$pkg"
 done
 
@@ -63,4 +62,3 @@ if ! echo "$SHELL" | grep -q fish; then
 fi
 
 header "All done! Go make a mess!"
-
