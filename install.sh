@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Customize these
-DOTFILES_REPO="$HOME/Dotfiles"
+DOTFILES_REPO="$HOME/dotfiles"
 REPO_URL="https://github.com/esotuvaka/dotfiles.git"
 STOW_PKGS="alacritty fish nvim starship tmux git"    # Folder names inside your dotfiles
 
@@ -22,6 +22,8 @@ check_and_install() {
             sudo pacman -Sy --noconfirm "$pkg"
         elif command -v brew &> /dev/null; then
             brew install "$pkg"
+	elif command -v dnf &> /dev/null; then
+	    sudo dnf install "$pkg"
         else
             echo "Unsupported package manager. Please install $pkg manually."
         fi
